@@ -1,6 +1,12 @@
 import adapter1.FileAdapter
 import adapter1.FileReaderImpl
 import adapter1.JsonFileReaderImpl
+import bridge.vehicle.problem.Bike
+import bridge.vehicle.problem.Car
+import bridge.vehicle.solution.Assemble
+import bridge.vehicle.solution.Produce
+import bridge.vehicle.solution.Truck
+import bridge.vehicle.solution.Vehicle
 import proxy.Client
 import proxy.HTTPSRequest
 import proxy.MainServer
@@ -9,14 +15,14 @@ import proxy.enums.ClientAction
 
 fun main() {
     println("Hello World!")
-    proxy()
-//    adapter()
+//    proxy()
+//    adapter
+    bridge()
 }
 
 
 fun adapter(){
     val adapter : FileAdapter = FileAdapter(fileReader = FileReaderImpl(), jsonFileReader = JsonFileReaderImpl() )
-//    adapter.getSize("Hello World")
     println(adapter.getSize("src/file.txt"))
 }
 
@@ -31,4 +37,15 @@ fun proxy(){
         )
     )
     print(client.makeRequest(ClientAction.RUN))
+}
+fun bridge(){
+    val bike = Bike()
+    bike.manufacture()
+    val car = Car()
+    car.manufacture()
+
+
+    val truck = Truck(assembleWorkshop = Assemble(), produceWorkshop = Produce())
+    truck.manufacture()
+
 }
