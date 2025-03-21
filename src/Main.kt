@@ -9,6 +9,7 @@ import bridge.vehicle.solution.Assemble
 import bridge.vehicle.solution.Produce
 import bridge.vehicle.solution.Truck
 import bridge.vehicle.solution.Vehicle
+import composite.Drawing
 import proxy.Client
 import proxy.HTTPSRequest
 import proxy.MainServer
@@ -20,8 +21,10 @@ fun main() {
 //    proxy()
 //    adapter
 //    vehicleBridge()
-    colorBridge()
+//    colorBridge()
+    composite()
 }
+
 
 
 
@@ -62,4 +65,14 @@ fun colorBridge(){
 
     val tri = bridge.color.solution.Triangle()
     tri.applyColor()
+}
+
+fun composite(){
+    val drawing = Drawing()
+
+    drawing.add(shape = composite.Triangle())
+    drawing.add(shape = composite.Square())
+    drawing.add(shape = composite.Drawing())
+    drawing.draw()
+
 }
