@@ -1,0 +1,4 @@
+package composite
+
+class Drawing {
+}

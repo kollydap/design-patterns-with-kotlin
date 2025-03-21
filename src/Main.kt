@@ -1,6 +1,8 @@
 import adapter1.FileAdapter
 import adapter1.FileReaderImpl
 import adapter1.JsonFileReaderImpl
+import bridge.color.problem.Square
+import bridge.color.problem.Triangle
 import bridge.vehicle.problem.Bike
 import bridge.vehicle.problem.Car
 import bridge.vehicle.solution.Assemble
@@ -17,8 +19,10 @@ fun main() {
     println("Hello World!")
 //    proxy()
 //    adapter
-    bridge()
+//    vehicleBridge()
+    colorBridge()
 }
+
 
 
 fun adapter(){
@@ -38,7 +42,8 @@ fun proxy(){
     )
     print(client.makeRequest(ClientAction.RUN))
 }
-fun bridge(){
+fun vehicleBridge(){
+
     val bike = Bike()
     bike.manufacture()
     val car = Car()
@@ -47,5 +52,14 @@ fun bridge(){
 
     val truck = Truck(assembleWorkshop = Assemble(), produceWorkshop = Produce())
     truck.manufacture()
+}
 
+fun colorBridge(){
+//    val square = Square()
+//    square.applyColor()
+//    val triangle = Triangle()
+//    triangle.applyColor()
+
+    val tri = bridge.color.solution.Triangle()
+    tri.applyColor()
 }
