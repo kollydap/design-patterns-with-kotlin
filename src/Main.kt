@@ -10,6 +10,10 @@ import bridge.vehicle.solution.Produce
 import bridge.vehicle.solution.Truck
 import bridge.vehicle.solution.Vehicle
 import composite.Drawing
+import decorator.ExtraCheese
+import decorator.Peperoni
+import decorator.vehicles.Benz
+import decorator.vehicles.MichelinTyres
 import proxy.Client
 import proxy.HTTPSRequest
 import proxy.MainServer
@@ -22,8 +26,10 @@ fun main() {
 //    adapter
 //    vehicleBridge()
 //    colorBridge()
-    composite()
+//    composite()
+    decorator()
 }
+
 
 
 
@@ -74,5 +80,18 @@ fun composite(){
     drawing.add(shape = composite.Square())
     drawing.add(shape = composite.Drawing())
     drawing.draw()
+
+}
+
+fun decorator(){
+//    val cheese = ExtraCheese(Peperoni())
+//    println(cheese.description)
+//    println(cheese.getPrice())
+//
+    val benz = Benz()
+    println(benz.description + " " + benz.getPrice() + " " + benz.getSpeed())
+
+    val upgradedBenz = MichelinTyres(benz)  // Store the decorated version
+    println(upgradedBenz.description + " " + upgradedBenz.getPrice() + " " + upgradedBenz.getSpeed())
 
 }
