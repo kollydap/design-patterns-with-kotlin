@@ -1,0 +1,4 @@
+package facade
+
+class Menus {
+}
