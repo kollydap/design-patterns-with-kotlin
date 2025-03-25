@@ -14,6 +14,7 @@ import decorator.ExtraCheese
 import decorator.Peperoni
 import decorator.vehicles.Benz
 import decorator.vehicles.MichelinTyres
+import factory.ShapeFactory
 import prototype.Point
 import proxy.Client
 import proxy.HTTPSRequest
@@ -31,8 +32,10 @@ fun main() {
 //    composite()
 //    decorator()
 //    singleton()
-    prototype()
+//    prototype()
+    factory()
 }
+
 
 
 
@@ -111,5 +114,9 @@ fun prototype(){
     val p2 = p1.clone()
     println(p1)
     println(p2)
-
+}
+fun factory(){
+    val v1 = ShapeFactory()
+    val square = v1.getShape("triangle")
+    println(square.paint())
 }
