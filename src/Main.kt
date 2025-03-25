@@ -14,11 +14,13 @@ import decorator.ExtraCheese
 import decorator.Peperoni
 import decorator.vehicles.Benz
 import decorator.vehicles.MichelinTyres
+import prototype.Point
 import proxy.Client
 import proxy.HTTPSRequest
 import proxy.MainServer
 import proxy.ProxyServer
 import proxy.enums.ClientAction
+import singleton.Database
 
 fun main() {
     println("Hello World!")
@@ -27,8 +29,11 @@ fun main() {
 //    vehicleBridge()
 //    colorBridge()
 //    composite()
-    decorator()
+//    decorator()
+//    singleton()
+    prototype()
 }
+
 
 
 
@@ -93,5 +98,18 @@ fun decorator(){
 
     val upgradedBenz = MichelinTyres(benz)  // Store the decorated version
     println(upgradedBenz.description + " " + upgradedBenz.getPrice() + " " + upgradedBenz.getSpeed())
+
+}
+
+fun singleton(){
+    val db = Database.getInstance()
+    println(db)
+}
+
+fun prototype(){
+    val p1 = Point(x = 20, y = 40)
+    val p2 = p1.clone()
+    println(p1)
+    println(p2)
 
 }
