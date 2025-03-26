@@ -1,3 +1,4 @@
+import AbstractFactory.FactoryProducer
 import adapter1.FileAdapter
 import adapter1.FileReaderImpl
 import adapter1.JsonFileReaderImpl
@@ -34,7 +35,8 @@ fun main() {
 //    decorator()
 //    singleton()
 //    prototype()
-    factory()
+//    factory()
+    abstractFactory()
 }
 
 
@@ -124,4 +126,10 @@ fun factory(){
     val v2 = NotificationFactory()
     val sms = v2.create("sms")
     println(sms.notifyUser())
+}
+
+fun abstractFactory(){
+    val v1 = FactoryProducer.getFactory(isRounded = true)
+    val v2 = v1.getShape("triangle")
+    println(v2.draw())
 }
