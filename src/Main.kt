@@ -14,6 +14,7 @@ import decorator.ExtraCheese
 import decorator.Peperoni
 import decorator.vehicles.Benz
 import decorator.vehicles.MichelinTyres
+import factory.NotificationFactory
 import factory.ShapeFactory
 import prototype.Point
 import proxy.Client
@@ -119,4 +120,8 @@ fun factory(){
     val v1 = ShapeFactory()
     val square = v1.getShape("triangle")
     println(square.paint())
+
+    val v2 = NotificationFactory()
+    val sms = v2.create("sms")
+    println(sms.notifyUser())
 }
