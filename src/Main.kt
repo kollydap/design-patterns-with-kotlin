@@ -17,6 +17,9 @@ import decorator.vehicles.Benz
 import decorator.vehicles.MichelinTyres
 import factory.NotificationFactory
 import factory.ShapeFactory
+import iterator.MyDataStructure
+import observer.NewsAgency
+import observer.NewsChannel
 import prototype.Point
 import proxy.Client
 import proxy.HTTPSRequest
@@ -36,8 +39,12 @@ fun main() {
 //    singleton()
 //    prototype()
 //    factory()
-    abstractFactory()
+//    abstractFactory()
+//    observer()
+    iterator()
 }
+
+
 
 
 
@@ -132,4 +139,38 @@ fun abstractFactory(){
     val v1 = FactoryProducer.getFactory(isRounded = true)
     val v2 = v1.getShape("triangle")
     println(v2.draw())
+}
+
+fun observer(){
+    val agency = NewsAgency()
+    val channel1 = NewsChannel()
+    val channel2 = NewsChannel()
+
+    agency.add(channel1)
+    agency.add(channel2)
+
+    agency.setNews("Breaking News: Kotlin Observer Pattern Explained!")
+}
+
+fun iterator(){
+    val dataStructure = MyDataStructure()
+    val iterator = dataStructure.getIterator()
+
+    while (iterator.hasNext()) {
+        val name = iterator.next()
+        println("Processing: $name")
+
+        // Remove "osaze" from the list
+        if (name == "osaze") {
+            iterator.remove()
+            println("Removed: $name")
+        }
+    }
+
+    // Verify the remaining elements
+    val newIterator = dataStructure.getIterator()
+    println("Remaining elements:")
+    while (newIterator.hasNext()) {
+        println(newIterator.next())
+    }
 }
