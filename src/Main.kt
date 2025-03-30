@@ -10,6 +10,9 @@ import bridge.vehicle.solution.Assemble
 import bridge.vehicle.solution.Produce
 import bridge.vehicle.solution.Truck
 import bridge.vehicle.solution.Vehicle
+import command.FileOps
+import command.FileOpsInvoker
+import command.OpenFileOps
 import composite.Drawing
 import decorator.ExtraCheese
 import decorator.Peperoni
@@ -173,4 +176,9 @@ fun iterator(){
     while (newIterator.hasNext()) {
         println(newIterator.next())
     }
+}
+
+fun command(){
+    val invoker = FileOpsInvoker()
+    invoker.executeOperations(OpenFileOps("home.txt"))
 }
