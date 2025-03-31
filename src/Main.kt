@@ -10,9 +10,7 @@ import bridge.vehicle.solution.Assemble
 import bridge.vehicle.solution.Produce
 import bridge.vehicle.solution.Truck
 import bridge.vehicle.solution.Vehicle
-import command.FileOps
-import command.FileOpsInvoker
-import command.OpenFileOps
+import command.*
 import composite.Drawing
 import decorator.ExtraCheese
 import decorator.Peperoni
@@ -44,8 +42,10 @@ fun main() {
 //    factory()
 //    abstractFactory()
 //    observer()
-    iterator()
+//    iterator()
+    command()
 }
+
 
 
 
@@ -179,6 +179,11 @@ fun iterator(){
 }
 
 fun command(){
+    val file = File("document.txt")
+    val openCommand = OpenFileOps(file)
+    val saveCommand = SaveFileOps(file)
+
     val invoker = FileOpsInvoker()
-    invoker.executeOperations(OpenFileOps("home.txt"))
+    println(invoker.executeOperations(openCommand)) // Opening document.txt
+    println(invoker.executeOperations(saveCommand))
 }

@@ -1,7 +1,6 @@
 package command
 
-class OpenFileOps(private val fileName: String): FileOps {
-    private var file =  File(fileName)
+class OpenFileOps(private val file: File): FileOps {
     override fun execute(): String {
         return file.open()
     }
