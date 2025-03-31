@@ -10,6 +10,7 @@ import bridge.vehicle.solution.Assemble
 import bridge.vehicle.solution.Produce
 import bridge.vehicle.solution.Truck
 import bridge.vehicle.solution.Vehicle
+import chainOfResponibility.*
 import command.*
 import composite.Drawing
 import decorator.ExtraCheese
@@ -43,18 +44,9 @@ fun main() {
 //    abstractFactory()
 //    observer()
 //    iterator()
-    command()
+//    command()
+    chainOfResponsibilities()
 }
-
-
-
-
-
-
-
-
-
-
 fun adapter(){
     val adapter : FileAdapter = FileAdapter(fileReader = FileReaderImpl(), jsonFileReader = JsonFileReaderImpl() )
     println(adapter.getSize("src/file.txt"))
@@ -186,4 +178,16 @@ fun command(){
     val invoker = FileOpsInvoker()
     println(invoker.executeOperations(openCommand)) // Opening document.txt
     println(invoker.executeOperations(saveCommand))
+}
+
+fun chainOfResponsibilities(){
+    val chain1 = AddNumbers()
+    val chain2 = SubtractNumber()
+    val chain3 = MultiplyNumbers()
+
+    chain1.setNextChain(chain2)
+    chain2.setNextChain(chain3)
+
+    val eqn1 = Numbers(10,20, "mul")
+    chain1.calculate(eqn1)
 }
