@@ -3,9 +3,10 @@ package command.textEditor
 import command.FileOps
 
 class TextEditor {
-    private final  val editorsContent : MutableList<String> = mutableListOf()
+    private   val editorsContent : MutableList<String> = mutableListOf()
 
     fun storeText(text: String) {
+
         editorsContent.add(text)
         println(editorsContent)
         println("storing text")

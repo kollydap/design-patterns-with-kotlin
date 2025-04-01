@@ -11,6 +11,9 @@ import bridge.vehicle.solution.Produce
 import bridge.vehicle.solution.Truck
 import bridge.vehicle.solution.Vehicle
 import chainOfResponibility.*
+import chainOfResponibility.atm.TenDollars
+import chainOfResponibility.atm.ThirtyDollars
+import chainOfResponibility.atm.TwentyDollars
 import command.*
 import composite.Drawing
 import decorator.ExtraCheese
@@ -19,6 +22,10 @@ import decorator.vehicles.Benz
 import decorator.vehicles.MichelinTyres
 import factory.NotificationFactory
 import factory.ShapeFactory
+import interpreter.AndExpression
+import interpreter.Expression
+import interpreter.OrExpression
+import interpreter.TerminalExpression
 import iterator.MyDataStructure
 import observer.NewsAgency
 import observer.NewsChannel
@@ -45,7 +52,8 @@ fun main() {
 //    observer()
 //    iterator()
 //    command()
-    chainOfResponsibilities()
+//    chainOfResponsibilities()
+    interpreter()
 }
 fun adapter(){
     val adapter : FileAdapter = FileAdapter(fileReader = FileReaderImpl(), jsonFileReader = JsonFileReaderImpl() )
@@ -190,4 +198,27 @@ fun chainOfResponsibilities(){
 
     val eqn1 = Numbers(10,20, "mul")
     chain1.calculate(eqn1)
+
+
+    val ch2 = TenDollars()
+    val ch3 = TwentyDollars()
+    val ch4 = ThirtyDollars()
+
+    ch2.setNextMoneyDistributorChain(ch3)
+    ch3.setNextMoneyDistributorChain(ch4)
+
+    ch2.calculate(100)
+}
+
+fun interpreter (){
+    val jack = TerminalExpression("jack")
+    val john = TerminalExpression("john")
+    val isMale = OrExpression(jack, john)
+    println(isMale.interpret("jack"))
+
+    val sara = TerminalExpression("sara")
+    val married = TerminalExpression("married")
+    val isMarried  = AndExpression(sara, married)
+
+    println(isMarried.interpret("sara"))
 }
