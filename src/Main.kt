@@ -41,6 +41,9 @@ import singleton.Database
 import state.mobileAlert.Mobile
 import state.mobileAlert.Ring
 import state.mobileAlert.Vibrate
+import visitor.pizza.ByDelivery
+import visitor.pizza.Cheese
+import visitor.pizza.Pizza
 
 fun main() {
     println("Hello World!")
@@ -60,7 +63,8 @@ fun main() {
 //    chainOfResponsibilities()
 //    interpreter()
 //    momento()
-    state()
+//    state()
+    visitor()
 }
 fun adapter(){
     val adapter : FileAdapter = FileAdapter(fileReader = FileReaderImpl(), jsonFileReader = JsonFileReaderImpl() )
@@ -249,12 +253,14 @@ fun state(){
     mobile.mobileAlertState = Ring()
     mobile.push()
     mobile.mobileAlertState = Ring()
-
     mobile.push()
     mobile.mobileAlertState = Vibrate()
-
     mobile.push()
+}
 
+fun visitor(){
+    val pizza1 = Cheese()
+    val deliveryMethod = ByDelivery()
 
-
+    deliveryMethod.visit(pizza1)
 }
