@@ -27,6 +27,8 @@ import interpreter.Expression
 import interpreter.OrExpression
 import interpreter.TerminalExpression
 import iterator.MyDataStructure
+import momento.CareTaker
+import momento.Originator
 import observer.NewsAgency
 import observer.NewsChannel
 import prototype.Point
@@ -221,4 +223,14 @@ fun interpreter (){
     val isMarried  = AndExpression(sara, married)
 
     println(isMarried.interpret("sara"))
+}
+
+fun momento(){
+    val originator = Originator()
+    val careTaker = CareTaker()
+    originator.setState("momento1")
+    originator.setState("momento2")
+
+    careTaker.addMomento(originator.saveStateToMomento())
+
 }
