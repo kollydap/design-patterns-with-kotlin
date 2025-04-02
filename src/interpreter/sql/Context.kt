@@ -1,6 +1,5 @@
 package interpreter.sql
 
-import com.sun.rowset.internal.Row
 
 class Context {
     companion object {

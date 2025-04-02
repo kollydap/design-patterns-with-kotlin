@@ -2,7 +2,7 @@ package momento
 
 class CareTaker {
     private val momentoList = mutableListOf<Momento>()
-    fun addMomento(momento: Momento) {
+    fun addMomentoToList(momento: Momento) {
         momentoList.add(momento)
     }
     fun getMomento(index: Int): Momento {

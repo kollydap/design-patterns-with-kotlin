@@ -38,6 +38,9 @@ import proxy.MainServer
 import proxy.ProxyServer
 import proxy.enums.ClientAction
 import singleton.Database
+import state.mobileAlert.Mobile
+import state.mobileAlert.Ring
+import state.mobileAlert.Vibrate
 
 fun main() {
     println("Hello World!")
@@ -55,7 +58,9 @@ fun main() {
 //    iterator()
 //    command()
 //    chainOfResponsibilities()
-    interpreter()
+//    interpreter()
+//    momento()
+    state()
 }
 fun adapter(){
     val adapter : FileAdapter = FileAdapter(fileReader = FileReaderImpl(), jsonFileReader = JsonFileReaderImpl() )
@@ -229,8 +234,27 @@ fun momento(){
     val originator = Originator()
     val careTaker = CareTaker()
     originator.setState("momento1")
-    originator.setState("momento2")
+    careTaker.addMomentoToList(originator.saveStateToMomento())
 
-    careTaker.addMomento(originator.saveStateToMomento())
+    originator.setState("momento2")
+    careTaker.addMomentoToList(originator.saveStateToMomento())
+    println(originator.getState())
+    originator.getStateFromMomento(careTaker.getMomento(0))
+    println(originator.getState())
+}
+
+fun state(){
+    val mobile = Mobile()
+    mobile.push()
+    mobile.mobileAlertState = Ring()
+    mobile.push()
+    mobile.mobileAlertState = Ring()
+
+    mobile.push()
+    mobile.mobileAlertState = Vibrate()
+
+    mobile.push()
+
+
 
 }

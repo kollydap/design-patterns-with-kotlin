@@ -1,0 +1,2 @@
+the object composes the state
+the state has a function that accepts the obect that it wants to update so it can update itself in that object
